@@ -12,9 +12,21 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-12 col-md-4 text-center h1" id="flags">Not In Race</div>
-        <div class="col-sm-12 col-md-8" style="padding:1rem;"><button type="button" class="btn btn-primary" id="manualConnect">Manual Connect</button><button type="button" class="btn btn-danger" id="emergencyStop">Emergency Stop</button></div>
+        <div class="col-sm-12 col-md-4 text-center h1 flag-none" id="flags">Not In Race</div>
+        <div class="col-sm-12 col-md-4 text-center" id="temps">
+          <p><b>Air Temperature: </b><span id="airTemp">0</span>&deg;F</p>
+          <p><b>Track Temperature: </b><span id="trackTemp">0</span>&deg;F</p>
+        </div>
+        <div class="col-sm-12 col-md-4 text-center" id="lapTimes">
+          <p><b>Last Lap Time: </b><span id="lastTime"></span></p>
+          <p><b>Best Lap Time: </b><span id="bestTime"></span> (Lap <span id="bestLap"></span>)</p>
+        </div>
       </div>
+    </div>
+
+    <div class="col-sm-12 col-md-8" style="padding:1rem;">
+      <button type="button" class="btn btn-primary" id="manualConnect">Manual Connect</button>
+      <button type="button" class="btn btn-danger" id="emergencyStop">Emergency Stop</button>
     </div>
     <script src="./bootstrap/js/jquery-3.5.1.min.js"></script>
     <script src="./bootstrap/js/popper.min.js"></script>
