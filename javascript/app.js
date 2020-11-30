@@ -16,8 +16,28 @@
       if (data.type == "telemetry") {
         // Handle UI updates
         const telemetry = data.data.values;
-        if (telemetry.SessionState == "Racing") {
-          elements.flagBox.text(`Lap ${telemetry.Lap}${telemetry.SessionLapsRemain >= 0 ? `/${telemetry.LapCompleted + telemetry.SessionLapsRemainEx}` : ""}`);
+
+        // Update lap counts
+        if (["Racing", "ParadeLaps"].includes(telemetry.SessionState)) {
+          elements.flagBox.text(`Lap ${telemetry.Lap}${telemetry.SessionLapsRemainEx >= 0 ? `/${(telemetry.LapCompleted >= 0 ? telemetry.LapCompleted : 0) + telemetry.SessionLapsRemainEx}` : ""}`);
+        } else {
+          console.debug(`Unhandled SessionState: ${telemetry.SessionState}`);
+        }
+
+        if (telemetry.SessionFlags.includes("Green")) {
+          if (!elements.flagBox.hasClass("flag-green")) {
+            elements.flagBox.removeClass((index, className) => {
+              return (className.match(/(^|\s)flag-\S+/g || [])).join(" ");
+            });
+            elements.flagBox.addClass("flag-green");
+          }
+        } else if (telemetry.SessionFlags == []) {
+          elements.flagBox.removeClass((index, className) => {
+            return (className.match(/(^|\s)flag-\S+/g || [])).join(" ");
+          });
+          elements.flagBox.addClass("flag-none");
+        } else {
+          console.debug(`Unhandled SessionFlags: ${JSON.stringify(telemetry.SessionFlags)}`);
         }
       }
       if (data.type == "ping") {

@@ -3,7 +3,6 @@ export const connect = (hostname, port) => {
   const socket = new WebSocket(`ws://${hostname}:${port}`);
   socket.onopen = (e) => {
     console.debug(`Connected to ${hostname} on port ${port}`);
-    socket.send(JSON.stringify({"command": "ping"}));
   };
 
   socket.onclose = (e) => {
