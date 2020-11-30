@@ -1,0 +1,50 @@
+.flag-none {
+  color: #000;
+  background-color: #fff;
+}
+
+.flag-green {
+  color: #fff;
+  background-color: #00dd00;
+  animation: greenBlink 1s 2;
+}
+
+.flag-caution {
+  color: #000;
+  background-color: #ffff00;
+  animation: yellowBlink 2s infinite;
+}
+
+#flags {
+  padding: 1rem;
+}
+
+@keyframes yellowBlink {
+  5%, 45% {
+    color: #000;
+    background-color: #ffff00;
+  }
+  55%, 95% {
+    color: #000;
+    background-color: #fff;
+  }
+}
+
+@keyframes greenBlink {
+  0%, 25% {
+    color: #fff;
+    background-color: #00dd00;
+  }
+  26%, 50% {
+    color: #000;
+    background-color: #fff;
+  }
+  51%, 75% {
+    color: #fff;
+    background-color: #00dd00;
+  }
+  76%, 100% {
+    color: #000;
+    background-color: #fff;
+  }
+}
